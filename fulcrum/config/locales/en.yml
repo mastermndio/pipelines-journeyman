@@ -1,0 +1,123 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  fulcrum:  "Fulcrum"
+
+  log out:  "Log out"
+  log in:   "Log in"
+  sign up:  "Sign up"
+  edit:     "Edit"
+  delete:   "Delete"
+  back:     "Back"
+  import:   "Import"
+  export:   "Export"
+  revert:   "Revert"
+  apply:    "Apply"
+  velocity: "Velocity"
+  notes:    "Notes"
+  close:    "Close"
+  points:   "Points"
+  saving:   "Saving ..."
+  expand:   "Expand"
+
+  author unknown: "Author Unknown"
+  add story: "Add story"
+  save error: "Save error"
+  override velocity: "Override velocity"
+  story title: "Story title"
+
+  requested on date:          'Requested on {{date}}'
+  requested by user on date:  'Requested by {{user}} on {{date}}'
+
+  imported n stories:
+    one: 'Imported 1 story'
+    other: 'Imported %{count} stories'
+
+  n stories failed to import:
+    one: '1 story failed to import'
+    other: '%{count} stories failed to import'
+
+  n weeks:
+    one: '1 week'
+    other: '%{count} weeks'
+  
+  keycuts:
+    keyboard_shortcuts: Keyboard shortcuts
+    help: Help (this)
+    add_story: Add story
+    save_currently_open_story: Save currently open story
+    save_comment_being_edited: Save comment being edited
+    toggle_backlog: Toggle backlog
+    toggle_done: Toggle done
+    toggle_history: Toggle history
+    toggle_icebox: Toggle chilly bin
+    toggle_my_work: Toggle my work
+    toggle_labels_searches: Toggle labels &amp; searches
+    toggle_current: Toggle current
+  
+  activerecord:
+    models:
+      user:
+        one: 'Member'
+        other: 'Members'
+      project:
+        one: 'Project'
+        other: 'Projects'
+      story:
+        one: 'Story'
+        other: 'Stories'
+
+    attributes:
+      note:
+        note:                 'Note'
+      project:
+        name:                 'Name'
+        point_scale:          'Point scale'
+        start_date:           'Start date'
+        iteration_start_day:  'Iteration start day'
+        iteration_length:     'Iteration length'
+        default_velocity:     'Default velocity'
+      story:
+        title:                'Title'
+        description:          'Description'
+        estimate:             'Estimate'
+        story_type:           'Story type'
+        state:                'State'
+        accepted_at:          'Accepted at'
+        position:             'Position'
+        labels:               'Labels'
+        requested_by:         'Requested by'
+        owned_by:             'Owned by'
+
+
+  projects:
+    new project:        "New Project"
+    edit project:       "Edit Project"
+    project properties: "Project Properties"
+
+    project was successfully created: "Project was successfully created."
+    project was successfully updated: "Project was successfully updated."
+
+    index:
+      listing projects: "Listing Projects"
+      are you sure you want to delete this project: "Are you sure you want to delete this project?  This action cannot be undone."
+      the iteration starts on x with length of x weeks:
+        one:    "Iterations start on %{day} with a length of 1 week"
+        other:  "Iterations start on %{day} with a length of %{count} weeks"
+
+    show:
+      done: "Done"
+      in_progress: "In Progress"
+      backlog: "Backlog"
+      icebox: "Chilly Bin"
+
+  registrations:
+    edit:
+      leave_blank_if_you_dont_want_to_change_it: "Leave blank if you don't want to change it"
+      notify_me_when_my_stories_are: "Notify me when my stories are"
+      we_need_your_current_password_to_confirm_your_changes: "We need your current password to confirm your changes."
+
+  time:
+    formats:
+      note_date: "%b %d, %Y"

@@ -1,0 +1,103 @@
+<%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
+
+<script type="text/javascript">
+$(function() {
+  window.md = new Markdown.Converter();
+
+  var project = new Fulcrum.Project(<%= @project.to_json.html_safe %>);
+  project.users.reset(<%= @project.users.to_json.html_safe %>);
+  project.current_user = new Fulcrum.User(<%= current_user.to_json.html_safe %>);
+
+  var doneColumn = new Fulcrum.ColumnView({
+    id: 'done', name: '<%= t('.done') %>', el: $('td.done_column'), sortable: false
+  }).render();
+  $('#column-toggles').append(
+    new Fulcrum.ColumnVisibilityButtonView({columnView: doneColumn}).render().el
+  );
+
+  var inProgressColumn = new Fulcrum.ColumnView({
+    id: 'in_progress', name: '<%= t('.in_progress') %>', el: $('td.in_progress_column'),
+    sortable: true
+  }).render();
+  $('#column-toggles').append(
+    new Fulcrum.ColumnVisibilityButtonView({columnView: inProgressColumn}).render().el
+  );
+
+  var backlogColumn = new Fulcrum.ColumnView({
+    id: 'backlog', name: '<%= t('.backlog') %>', el: $('td.backlog_column'), sortable: true
+  }).render();
+  $('#column-toggles').append(
+    new Fulcrum.ColumnVisibilityButtonView({columnView: backlogColumn}).render().el
+  );
+
+  var chillyBinColumn = new Fulcrum.ColumnView({
+    id: 'chilly_bin', name: '<%= t('.icebox') %>', el: $('td.chilly_bin_column'),
+    sortable: true
+  }).render();
+  $('#column-toggles').append(
+    new Fulcrum.ColumnVisibilityButtonView({columnView: chillyBinColumn, elementId: 'chilly_bin'}).render().el
+  );
+
+  // FIXME Move to view
+  // Connect up drag and drop behaviour
+  $('#backlog').sortable('option', 'connectWith', '#chilly_bin,#in_progress');
+  $('#chilly_bin').sortable('option', 'connectWith', '#backlog,#in_progress');
+  $('#in_progress').sortable('option', 'connectWith', '#backlog,#chilly_bin');
+
+  window.projectView = new Fulcrum.ProjectView({model: project});
+  window.projectView.velocityView = new Fulcrum.ProjectVelocityView({
+    model: project, el: $('#velocity')
+  });
+  window.projectView.scaleToViewport();
+  $(window).resize(projectView.scaleToViewport);
+
+  setInterval(function() {
+   window.projectView.model.fetch();
+  }, 5000);
+
+  <% if notice %>
+    window.projectView.notice({
+      title: 'Notice', text: '<%= notice %>',
+      image: '<%= image_path('dialog-information.png') %>'
+    });
+  <% end %>
+
+  <% if alert %>
+    window.projectView.notice({
+      title: 'Alert', text: '<%= alert %>', sticky: true,
+      image: '<%= image_path('dialog-warning.png') %>'
+    });
+  <% end %>
+});
+</script>
+
+<% content_for :title_bar do %>
+  <div id="velocity" class="velocity"></div>
+  <%= render :partial => 'projects/nav',
+             :locals => {:project => @project, :show_column_toggles => true} %>
+             | <a id="add_story" href="#"><%= t('add story') %></a>
+<% end %>
+
+<table class="stories" width="100%">
+  <tbody>
+    <tr>
+    <% if !Fulcrum::Application.config.fulcrum.column_order or Fulcrum::Application.config.fulcrum.column_order != 'progress_to_right' %>
+      <td class="done_column" style="width: 25%"></td>
+      <td class="in_progress_column" style="width: 25%"></td>
+      <td class="backlog_column" style="width: 25%"></td>
+      <td class="chilly_bin_column" style="width: 25%"></td>
+    <% elsif Fulcrum::Application.config.fulcrum.column_order == 'progress_to_right' %>
+      <td class="chilly_bin_column" style="width: 25%"></td>
+      <td class="backlog_column" style="width: 25%"></td>
+      <td class="in_progress_column" style="width: 25%"></td>
+      <td class="done_column" style="width: 25%"></td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<div class="loading_screen">
+  <div class="spinner">
+    <span class="icons-spinner"></span>
+  </div>
+</div>
