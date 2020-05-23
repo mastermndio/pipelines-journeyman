@@ -3,9 +3,9 @@
 
 ![Image of Pipelines](https://ausenco-www-staging.s3.amazonaws.com/upload/user/image/image_of_ambatovy-slurry-pipeline20180419180101551.jpg)
 
-# Lets Set the Scene
+# Let's Set the Scene
 
-You just started at a new role at pretty cool startup. They're making some big waves, and growing, but they're initial Architecture and Infrastructure isn't really prepared for the future. The initially set everything up by hand on an on prem server. There is absolutely no automation here. You've walked into poor documentation, and fully manual changes. Time for a digital transformation.
+You just started at a new role at a pretty cool startup. They're making some big waves, and growing, but they're initial Architecture and Infrastructure isn't really prepared for the future. The initially set everything up by hand on an on prem server. There is absolutely no automation here. You've walked into poor documentation, and fully manual changes. Time for a digital transformation.
 
 # The Job
 
