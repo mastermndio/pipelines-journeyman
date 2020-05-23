@@ -20,4 +20,4 @@ Our Job is going to be be take this startup from Zero to Hero. We'll be required
 7. This app is a money maker. Let's make sure it can handle errors
 
 
-
+For more information please visit [this website](https://academy.mastermnd.io)
